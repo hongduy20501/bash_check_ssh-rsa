@@ -13,11 +13,11 @@ done
 
 while read -r line; do
 	a=$(echo "${line}" | cut -d' ' -f1)
-	b=$(echo -n "${line}" | grep -oE "ssh-rsa [A-Za-z0-9/+=]+" | md5sum | grep -oE "[A-Fa-f0-9]+")
-	c=$(echo -n "${line}" | grep -oE "ssh-rsa [A-Za-z0-9/+=]+")
-	while read -r linekey; do
-		if [[  ${b} == ${linekey} ]]; then
-			echo " key: ${c} thuoc user: ${a}"
+	b=$(echo -n "${line}" | grep -oE "ssh-rsa [A-Za-z0-9/+=]+")
+        c=$(echo "${b}" | md5sum | grep -oE "[A-Fa-f0-9]+")
+        while read -r linekey; do
+        	if [[  ${c} == ${linekey} ]]; then
+                echo " key: ${b} thuoc user: ${a}"
 		fi
 	done < keys.list
 done < keys
