@@ -16,8 +16,8 @@ while read -r line; do
 	b=$(echo -n "${line}" | grep -oE "ssh-rsa [A-Za-z0-9/+=]+")
         c=$(echo "${b}" | md5sum | grep -oE "[A-Fa-f0-9]+")
         while read -r linekey; do
-        	if [[  ${c} == ${linekey} ]]; then
-                echo " key: ${b} thuoc user: ${a}"
+                if [[  ${c} == ${linekey} ]]; then
+                        echo " key: ${b} thuoc user: ${a}"
 		fi
 	done < keys.list
 done < keys
